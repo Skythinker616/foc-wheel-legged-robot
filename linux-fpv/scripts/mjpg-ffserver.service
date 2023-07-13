@@ -1,0 +1,17 @@
+[Unit]
+Description=mjpg-ffserver service
+
+[Service]
+User=root
+Type=exec
+WorkingDirectory=/root/balancebot
+ExecStart=/usr/bin/bash /root/balancebot/start-ffmpeg.sh
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -9 $MAINPID
+KillMode=mixed
+KillSignal=SIGINT
+#Restart=always
+#RestartSec=2s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=ctrl-proxy service
+After=bluetooth.target
+Requires=bluetooth.target
+
+[Service]
+User=root
+Type=exec
+ExecStart=python3 /root/balancebot/ctrl-proxy.py
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+RestartSec=2s
+ExecStartPre=/bin/sleep 5
+
+[Install]
+WantedBy=multi-user.target

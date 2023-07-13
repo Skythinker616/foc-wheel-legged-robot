@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>Live Feed</title>
+    <script>
+            var ASPECT_RATIO = 4.0 / 3.0;
+            var IMAGE_SRC = ""; // "http://10.150.51.108:8080/?action=stream" //mjpg-streamer test
+
+            //设置视频源IP
+            function setServerIP(ip){
+                var elem = document.getElementById("liveFeed");
+                //IMAGE_SRC = "http://" + ip + ":8080/?action=stream"; //mjpg-streamer test
+                IMAGE_SRC = "http://" + ip + ":8090/camera.mjpg";
+                elem.src = IMAGE_SRC;
+            }
+
+            //定时刷新视频源，并通过WebView接口反馈视频是否正常连接
+            setInterval(function(){
+                var elem = document.getElementById("liveFeed");
+                if(typeof(webview) != "undefined")
+                {
+                    if(elem.complete && !elem.src.endsWith("transparent.png"))
+                        webview.jsCallback("setVideoState","true");
+                    else
+                        webview.jsCallback("setVideoState","false");
+				}
+                elem.src = IMAGE_SRC;
+            }, 3000);
+
+            //初始化
+            function initialize(){
+                var elem = document.getElementById("liveFeed")
+                var border = 0
+                
+                //自动调整视频尺寸
+                function updateStreamSize(){
+                    var containWidth = document.body.clientWidth
+                    var containHeight = document.body.clientHeight
+                    
+                    if(containWidth > 0 && containHeight > 0 && containWidth > border * 2 && containHeight > border * 2){
+                        if((containWidth - border * 2) / (containHeight - border * 2) < ASPECT_RATIO){
+                            var width = containWidth - border * 2
+                            var height = width / ASPECT_RATIO
+                        }
+                        else{
+                            var height = containHeight - border * 2
+                            var width = height * ASPECT_RATIO
+                        }
+                    }
+                    else{
+                        var width = 0
+                        var height = 0
+                    }
+
+                    elem.style.width = width
+                    elem.style.height = height
+                    elem.style.top = (containHeight - height) / 2
+                    elem.style.right = (containWidth - width) / 2
+                }
+                
+                //注册窗口大小改变事件
+                window.onresize = updateStreamSize
+
+                updateStreamSize()
+
+		        //设置元素地址属性
+                elem.src = IMAGE_SRC
+            }
+        </script>
+</head>
+<body onload="initialize()" style="background-color: black">
+<img id="liveFeed" style="font-family: monospace; text-align: center;
+            color: white; position: absolute; transform: rotate(180deg);"
+     onerror="this.src = 'transparent.png'"/>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.activity:activity:1.2.3@aar">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/65c9fcf106202d3fea23c30e55e93359/transformed/activity-1.2.3/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/65c9fcf106202d3fea23c30e55e93359/transformed/activity-1.2.3/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/65c9fcf106202d3fea23c30e55e93359/transformed/activity-1.2.3/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/65c9fcf106202d3fea23c30e55e93359/transformed/activity-1.2.3/res" />
+      <root url="file://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/65c9fcf106202d3fea23c30e55e93359/transformed/activity-1.2.3/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/65c9fcf106202d3fea23c30e55e93359/transformed/activity-1.2.3/res" />
+      <root url="file://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/65c9fcf106202d3fea23c30e55e93359/transformed/activity-1.2.3/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/65c9fcf106202d3fea23c30e55e93359/transformed/activity-1.2.3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/modules-2/files-2.1/androidx.activity/activity/1.2.3/90a39fdeb6c8aa134518e9fc089fd2625a0329b0/activity-1.2.3-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/modules-2/files-2.1/androidx.activity/activity/1.2.3/90a39fdeb6c8aa134518e9fc089fd2625a0329b0/activity-1.2.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

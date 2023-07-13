@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.transition:transition:1.2.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/021b0b14525b7a5cfb20cf681b0bcfb1/transformed/transition-1.2.0/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/021b0b14525b7a5cfb20cf681b0bcfb1/transformed/transition-1.2.0/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/021b0b14525b7a5cfb20cf681b0bcfb1/transformed/transition-1.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/021b0b14525b7a5cfb20cf681b0bcfb1/transformed/transition-1.2.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/021b0b14525b7a5cfb20cf681b0bcfb1/transformed/transition-1.2.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/021b0b14525b7a5cfb20cf681b0bcfb1/transformed/transition-1.2.0/res" />
+      <root url="file://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/021b0b14525b7a5cfb20cf681b0bcfb1/transformed/transition-1.2.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/transforms-3/021b0b14525b7a5cfb20cf681b0bcfb1/transformed/transition-1.2.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../AppsData/AndroidStudio/Gradle/caches/modules-2/files-2.1/androidx.transition/transition/1.2.0/65d2a5dab39f120d3f584fdead252ce81ec7dbee/transition-1.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../AppsData/AndroidStudio/Gradle/caches/modules-2/files-2.1/androidx.transition/transition/1.2.0/65d2a5dab39f120d3f584fdead252ce81ec7dbee/transition-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

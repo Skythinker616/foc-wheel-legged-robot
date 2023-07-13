@@ -1,37 +1,51 @@
-# foc-wheel-legged-robot
+# FOC 双轮腿机器人项目
 
-#### 介绍
-一个新型结构的轮腿机器人开源资料，包含机械设计、电子设计、算法仿真、软件开发等材料
+![封面](readme-img/cover.jpg)
 
-#### 软件架构
-软件架构说明
+这是一个完整的机器人项目，包含算法仿真、机械结构设计、电子硬件设计、嵌入式软件设计、上位机软件设计等多个部分，完成了以下内容：
 
+- 使用 SolidWorks 完成的机械结构设计
+- 基于 MATLAB / Simulink / Simscape 的算法设计和机器人物理仿真
+- 基于 STM32，使用 CAN 通信的无刷电机驱动板
+- 基于 ESP32、MPU6050 的运动控制模块（主控模块）
+- 基于 ffmpeg / ffserver 的 Linux 图传模块，使用低耦合可拔插方案
+- 支持蓝牙配网的 Android 遥控 APP
 
-#### 安装教程
+---
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## 部分效果展示
 
-#### 使用说明
+**机械结构渲染图：**
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+![渲染图](readme-img/mechanical.png)
 
-#### 参与贡献
+**Simscape Multibody 仿真效果：**
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+![仿真](readme-img/simulation.png)
 
+**机器人加速过程：**
 
-#### 特技
+![加速](readme-img/accel.png)
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+**跌落缓冲效果：**
+
+![跌落](readme-img/fall.png)
+
+**遥控APP界面：**
+
+![App](readme-img/app.png)
+
+---
+
+## 文件结构
+
+整个机器人项目被分成如下的几个部分，分别位于仓库不同目录下，读者可以按需查看：
+
+- [`solidworks`](solidworks)：机械结构设计，包含所有零件和总装配体模型文件
+- [`matlab`](matlab)：算法仿真，包含模型建立、算法设计和仿真文件等
+- [`stm32-foc`](stm32-foc)：无刷电机驱动板，包含硬件设计文件和STM32代码工程
+- [`esp32-controller`](esp32-controller)：运动控制模块，包含硬件设计文件和ESP32代码工程
+- [`linux-fpv`](linux-fpv)：Linux 图传模块，包含相关Shell脚本和Python脚本
+- [`android`](android)：Android 遥控 APP，包含源代码和已编译好的安装包
+
+> 注：图传模块为可选模块，增加可玩性的同时也会明显增加项目的成本和复杂度，删去后其他功能仍可以正常使用
