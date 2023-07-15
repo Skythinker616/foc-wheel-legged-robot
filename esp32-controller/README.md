@@ -24,6 +24,8 @@
 
 ### 文件说明
 
+硬件相关文件都在`hardware`目录下：
+
 - `ESP32CTRL_LCEDA_SCH.json`：立创EDA原理图文件
 - `ESP32CTRL_LCEDA_PCB.json`：立创EDA PCB文件
 - `ESP32CTRL_AD_SCH.schdoc`：立创EDA导出的 Altium Designer 原理图文件
@@ -40,7 +42,7 @@
 
 ### 文件说明
 
-代码文件均位于`src`目录下：
+PlatformIO 工程位于`software`目录下，代码文件位于其中`src`目录下：
 
 - `main.cpp`：主要程序文件，包含所有任务模块的逻辑代码
 - `PID.c/h`：PID控制器的实现，包含单级和串级PID控制器

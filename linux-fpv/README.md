@@ -28,6 +28,17 @@
 
 ---
 
+## 参考购买途径
+
+> 注：下方的链接是笔者当时的购买链接，仅供参考，不保证可用性
+
+| 项目 | 购买链接 | 参考价格 |
+| :--: | :------: | :------: |
+| NanoPI Duo2 | [链接](https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8dunEQwK&id=669016013822) | ￥155.00 |
+| ov5640摄像头 | [链接](https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8dunEQwK&id=676065308445) | ￥20.00 |
+
+---
+
 ## 搭建方法
 
 ### 1. 安装FriendlyCore系统
@@ -38,7 +49,7 @@
 
 ### 2. 安装并配置ffmpeg和ffserver
 
-1. 下载ffmpeg和ffserver [下载地址](https://ffbinaries.com/downloads)，笔者使用的是ffmpeg v3.1.4和ffserver v3.2
+1. 下载ffmpeg和ffserver [下载地址](https://ffbinaries.com/downloads)，笔者使用的是ffmpeg v3.1.4和ffserver v3.2，建议使用相近版本
 
 2. 编写ffserver配置文件，将本仓库目录`scripts/ffserver.conf`中的内容复制到`/etc/ffserver.conf`中
 
@@ -83,6 +94,7 @@
 	sudo service ctrl-proxy start
 	sudo service ctrl-proxy stop
 	```
+
 4. 将Python控制服务设置为开机自启动，运行命令：
 
 	```bash
@@ -97,4 +109,4 @@
 
 - 经测试，本方案图传画质为640x480@25fps，直连手机热点时画面延迟约300ms，由于使用软件压缩为MJPG格式，CPU和网络带宽占用都比较高，可以尝试调用硬件编码器压缩为H264格式并传输(笔者没有成功达到预期效果)，或换用内置压缩功能的摄像头
 
-- 不考虑图像画质的话，可以将ffmpeg+ffserver方案直接更换为[mjpg-streamer](https://github.com/jacksonliam/mjpg-streamer)方案，配置更为方便，但经测试CPU占用更高，在该分辨率下无法达到25fps帧率
+- 不考虑图像画质的话，可以将ffmpeg+ffserver方案直接更换为[mjpg-streamer](https://github.com/jacksonliam/mjpg-streamer)方案，配置更为方便，但经测试CPU占用更高，不降分辨率的话无法达到25fps帧率

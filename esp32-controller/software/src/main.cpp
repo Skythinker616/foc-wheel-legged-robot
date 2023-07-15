@@ -136,7 +136,6 @@ void Ctrl_StandupPrepareTask(void *arg);
 void Ctrl_Task(void *arg);
 void Ctrl_Init();
 
-void BT_Send(uint8_t *data, uint32_t len);
 void BT_SendSampleTask(void *arg);
 void BT_Init();
 
