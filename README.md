@@ -11,6 +11,8 @@
 - 基于 ffmpeg / ffserver 的 Linux 图传模块，使用低耦合可拔插方案
 - 支持蓝牙配网的 Android 遥控 APP
 
+**演示&介绍视频：**[https://www.bilibili.com/video/BV1bP411k75b/](https://www.bilibili.com/video/BV1bP411k75b/)
+
 ---
 
 ## 部分效果展示
