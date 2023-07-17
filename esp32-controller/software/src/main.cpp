@@ -409,7 +409,7 @@ void Ctrl_TargetUpdateTask(void *arg)
 	{
 		//根据当前腿长计算速度斜坡步长(腿越短越稳定，加减速斜率越大)
 		float legLength = (leftLegPos.length + rightLegPos.length) / 2;
-		speedSlopeStep = -(legLength - 0.07f) * 0.05f + 0.003f;
+		speedSlopeStep = -(legLength - 0.07f) * 0.02f + 0.002f;
 
 		//计算速度斜坡，斜坡值更新到target.speed
 		if(fabs(target.speedCmd - target.speed) < speedSlopeStep)

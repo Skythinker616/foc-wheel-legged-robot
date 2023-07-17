@@ -20,10 +20,10 @@ for step=1:length(L0s)
     g=9.8;
     
     % 进行物理计算
-    Nm=M*(x2+(L+Lm)*(theta2*cos(theta)-theta1*sin(theta))-l*(phi2*cos(phi)-phi1*sin(phi1)));
-    Pm=M*g+M*((L+Lm)*(-theta1*cos(theta)-theta2*sin(theta))+l*(phi1*cos(phi)+phi2*sin(phi)));
-    N=-Nm+mp*(x2+L*(theta2*cos(theta)-theta1*sin(theta)));
-    P=Pm+mp*g+mp*L*(-theta1*cos(theta)-theta2*sin(theta));
+    Nm=M*(x2+(L+Lm)*(theta2*cos(theta)-theta1^2*sin(theta))-l*(phi2*cos(phi)-phi1^2*sin(phi)));
+    Pm=M*g+M*((L+Lm)*(-theta1^2*cos(theta)-theta2*sin(theta))+l*(phi1^2*cos(phi)+phi2*sin(phi)));
+    N=Nm+mp*(x2+L*(theta2*cos(theta)-theta1^2*sin(theta)));
+    P=Pm+mp*g+mp*L*(-theta1^2*cos(theta)-theta2*sin(theta));
     
     equ1=x2-(T-N*R)/(Iw/R+mw*R);
     equ2=(P*L+Pm*Lm)*sin(theta)-(N*L+Nm*Lm)*cos(theta)-T+Tp-Ip*theta2;
@@ -40,7 +40,7 @@ for step=1:length(L0s)
     [G,H]=c2d(eval(A),eval(B),0.005);
     
     % 定义权重矩阵Q, R
-    Q=diag([1 50 800 300 5000 30]);
+    Q=diag([1 10 100 20 1000 1]);
     R=diag([1 1]);
 
     % 求解反馈矩阵K
