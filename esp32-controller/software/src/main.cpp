@@ -45,6 +45,8 @@ struct IMUData
 } imuData;
 
 //电机结构体
+//leftJoint[0]:左前关节电机, leftJoint[1]:左后关节电机, leftWheel:左车轮电机
+//rightJoint[0]:右前关节电机, rightJoint[1]:右后关节电机, rightWheel:右车轮电机
 struct Motor
 {
 	float speed;			   // rad/s
@@ -52,7 +54,7 @@ struct Motor
 	float voltage, maxVoltage; // V
 	float torque, torqueRatio; // Nm, voltage = torque / torqueRatio
 	float dir;				   // 1 or -1
-	float (*calcRevVolt)(float speed); // function to calculate reverse voltage
+	float (*calcRevVolt)(float speed); // 指向反电动势计算函数
 } leftJoint[2], rightJoint[2], leftWheel, rightWheel; //六个电机对象
 
 //腿部姿态结构体
@@ -161,18 +163,21 @@ void Motor_Init(Motor *motor, float offsetAngle, float maxVoltage, float torqueR
 }
 
 //4010电机反电动势计算函数(输入速度，输出反电动势)
+//测量并拟合出不同电压下对应的电机空载转速，调换自变量和因变量就是本函数
+//由于该测量方法忽略阻力对空载转速的影响，最终抵消反电动势时也会抵消大部分电机本身的阻力
 float Motor_CalcRevVolt4010(float speed)
 {
 	return 0.00008f * speed * speed * speed - 0.0035f * speed * speed + 0.2322f * speed;
 }
 
-//2804电机反电动势计算函数(输入速度，输出反电动势)
+//2804电机反电动势计算函数(输入速度，输出反电动势)，测量方法同上
 float Motor_CalcRevVolt2804(float speed)
 {
 	return 0.000004f * speed * speed * speed - 0.0003f * speed * speed + 0.0266f * speed;
 }
 
 //初始化所有电机对象
+//各个参数需要通过实际测量或拟合得到
 void Motor_InitAll()
 {
 	Motor_Init(&leftJoint[0], 1.431, 7, 0.0316f, -1, Motor_CalcRevVolt4010);
@@ -197,7 +202,8 @@ void Motor_SetTorque(Motor *motor, float torque)
 	motor->torque = torque;
 }
 
-//由设置的目标扭矩和当前转速计算补偿后的电机电压并进行限幅
+//由设置的目标扭矩和当前转速计算补偿反电动势后的驱动输出电压，并进行限幅
+//补偿的意义: 电机转速越快反电动势越大，需要加大驱动电压来抵消反电动势，使电流(扭矩)不随转速发生变化
 void Motor_UpdateVoltage(Motor *motor)
 {
 	float voltage = motor->torque / motor->torqueRatio * motorOutRatio;

@@ -37,8 +37,8 @@
 
 | 项目 | 内径 | 外径 | 厚度 | 购买链接 | 参考价格 |
 | :--: | :--: | :--: | :--: | :------: | :------: |
-| 深沟球轴承 | 4mm | 12mm| 4mm | [链接](https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8djsrWfk&id=626299304028) | ￥1.30 |
-| 推力轴承 | 8mm | 14mm | 4mm | [链接](https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8djsrWfk&id=643067962342) | ￥2.00 |
+| 深沟球轴承 604 | 4mm | 12mm| 4mm | [链接](https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8djsrWfk&id=626299304028) | ￥1.30 |
+| 推力轴承 F8-14M | 8mm | 14mm | 4mm | [链接](https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8djsrWfk&id=643067962342) | ￥2.00 |
 
 ### 螺丝
 
@@ -52,7 +52,7 @@
 
 ### 编码器磁铁
 
-电机转子上的磁铁须使用径向充磁的磁铁 [购买链接](https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8dunEQwK&id=596454786426) 参考价格：￥6.00 / 5个
+电机转子上的磁铁须使用径向充磁的磁铁，由于2804电机不自带磁铁，需要额外设计（本模型选用尺寸直径6mm x 厚度2mm） [购买链接](https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8dunEQwK&id=596454786426) 参考价格：￥6.00 / 5个
 
 ### 结构件
 

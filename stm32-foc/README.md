@@ -17,6 +17,8 @@
 
 > 注：经测试 STM32F103C8T6 可直接替换，软硬件都可直接兼容
 
+该子模块已经在立创平台开源：[https://oshwhub.com/skythinker/simplefoc103](https://oshwhub.com/skythinker/simplefoc103)
+
 ---
 
 ## 硬件说明
@@ -24,6 +26,8 @@
 ![电路设计](readme-img/design.png)
 
 电路为双层板结构，使用[立创EDA](https://lceda.cn/)设计，其中的对侧打孔相距22mm，与2804电机孔位相同
+
+> 注：程序使用单片机内部RC振荡器，因此外部晶振X1和负载电容C1/C2可以不焊接
 
 ### 文件说明
 

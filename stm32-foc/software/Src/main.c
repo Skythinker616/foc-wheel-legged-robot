@@ -90,8 +90,8 @@ typedef struct{
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define VOLT_SUPPLY 12 //供电电压
-#define MAX_VOLT 6.9f  //限制供电电压 4010电机:6.9V, 2804电机:4V
+#define VOLT_SUPPLY 12 //供电母线电压
+#define MAX_VOLT 6.9f  //限制供电电压(平均值)，最高为VOLT_SUPPLY/√3; 4010电机:6.9V, 2804电机:4V
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/

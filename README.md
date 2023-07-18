@@ -1,6 +1,22 @@
-# FOC 双轮腿机器人项目
-
 ![封面](readme-img/cover.jpg)
+
+<div align=center>
+	<h1>FOC 双轮腿机器人项目</h1>
+	<p>
+		<a href="https://gitee.com/skythinker/foc-wheel-legged-robot">
+			<img src="https://gitee.com/skythinker/foc-wheel-legged-robot/badge/star.svg"/>
+		</a>
+		<img src="https://gitee.com/skythinker/foc-wheel-legged-robot/badge/fork.svg"/>
+		<a href="https://github.com/Skythinker616/foc-wheel-legged-robot">
+			<img src="https://img.shields.io/github/stars/skythinker616/foc-wheel-legged-robot?logo=github"/>
+		</a>
+		<img src="https://img.shields.io/github/forks/skythinker616/foc-wheel-legged-robot?logo=github"/>
+		<a href="https://www.bilibili.com/video/BV1bP411k75b">
+			<img src="https://img.shields.io/badge/dynamic/json?label=views&style=flat&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1bP411k75b"/>
+		</a>
+		<img src="https://img.shields.io/badge/License-GPL3.0-red"/>
+	</p>
+</div>
 
 这是一个完整的机器人项目，包含算法仿真、机械结构设计、电子硬件设计、嵌入式软件设计、上位机软件设计等多个部分，完成了以下内容：
 
