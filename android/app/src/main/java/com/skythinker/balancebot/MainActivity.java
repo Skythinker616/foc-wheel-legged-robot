@@ -210,7 +210,16 @@ public class MainActivity extends AppCompatActivity {
 
         wifiClient = new WifiClient(15000); //创建连接到图传系统的UDP客户端
 
-        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123); //请求定位权限(用于扫描蓝牙设备)
+		//请求权限用于扫描蓝牙设备
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                requestPermissions(new String[]{Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT}, 123);
+            } else {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+            }
+        } else {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 123);
+        }
 
         //创建处理线程
         thread = new Thread(new Runnable() {
