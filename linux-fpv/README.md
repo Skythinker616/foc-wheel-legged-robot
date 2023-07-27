@@ -1,5 +1,7 @@
 # Linux 图传系统
 
+**简体中文 | [English](README_en.md)**
+
 这是本机器人项目中的一个可选子系统，基于NanoPI Duo2开发板进行开发
 
 ![NanoPI](readme-img/nanopi.png)

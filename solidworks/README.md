@@ -1,5 +1,7 @@
 # SolidWorks 机械模型
 
+**简体中文 | [English](README_en.md)**
+
 ![爆炸图](readme-img/explode.jpg)
 
 整个机械模型使用SolidWorks 2019 SP0.0设计，当前目录包含所有零件和总装配体`总装.SLDASM`，大部分零件使用3D打印制造，底板为定制亚克力板

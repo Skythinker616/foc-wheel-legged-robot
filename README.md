@@ -1,6 +1,5 @@
-![封面](readme-img/cover.jpg)
-
 <div align=center>
+	<img src="readme-img/cover.jpg"/>
 	<h1>FOC 双轮腿机器人项目</h1>
 	<p>
 		<a href="https://gitee.com/skythinker/foc-wheel-legged-robot">
@@ -15,6 +14,9 @@
 			<img src="https://img.shields.io/badge/dynamic/json?label=views&style=flat&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1bP411k75b"/>
 		</a>
 		<img src="https://img.shields.io/badge/License-GPL3.0-red"/>
+	</p>
+	<p>
+		<b>简体中文 | <a href="README_en.md">English</b></a>
 	</p>
 </div>
 

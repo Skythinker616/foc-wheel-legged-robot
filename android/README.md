@@ -1,5 +1,7 @@
 # Android App
 
+**简体中文 | [English](README_en.md)**
+
 这是本机器人项目的一个子模块，基于Android Studio开发，有以下功能：
 
 - 读取用户触摸输入，向机器人发送遥控指令
