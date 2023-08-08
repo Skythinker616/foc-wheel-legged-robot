@@ -21,7 +21,7 @@ for step=1:length(L0s)
     
     % 进行物理计算
     Nm=M*(x2+(L+Lm)*(theta2*cos(theta)-theta1^2*sin(theta))-l*(phi2*cos(phi)-phi1^2*sin(phi)));
-    Pm=M*g+M*((L+Lm)*(-theta1^2*cos(theta)-theta2*sin(theta))+l*(phi1^2*cos(phi)+phi2*sin(phi)));
+    Pm=M*g+M*((L+Lm)*(-theta1^2*cos(theta)-theta2*sin(theta))-l*(phi1^2*cos(phi)+phi2*sin(phi)));
     N=Nm+mp*(x2+L*(theta2*cos(theta)-theta1^2*sin(theta)));
     P=Pm+mp*g+mp*L*(-theta1^2*cos(theta)-theta2*sin(theta));
     
