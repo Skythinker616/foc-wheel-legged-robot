@@ -41,7 +41,7 @@ The schematic and PCB files are located in the `hardware` folder:
 - `STM32FOC_AD_PCB.pcbdoc`: Altium Designer PCB file exported from LCEDA
 - `STM32FOC_SVG.svg`: Schematic svg file
 
-> Note: The Altium Designer files have not been thoroughly checked and may contain errors.
+> Note: Import the two JSON files, the schematic and PCB, into [LCEDA Standard Edition](https://lceda.cn/editor) to view and edit them. It is not recommended to use AD.
 
 ---
 
@@ -127,6 +127,8 @@ The four driver IDs (5-8) share the receive data frame **StdID = 0x200**:
 | int16_t           | int16_t           | int16_t           | int16_t           |
 
 In other words, if a data frame with StdID=0x100 is sent on the bus, driver boards with IDs 1-4 will simultaneously receive the command. If a data frame with StdID=0x200 is sent, driver boards with IDs 5-8 will receive the command.
+
+> Note: The above mentioned output voltages are RMS values, not peak values. For example, when the supply voltage is 12V, the allowable range for the output voltage is [0, 6.93V] (12 / √3 = 6.93).
 
 ---
 

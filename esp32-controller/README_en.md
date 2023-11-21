@@ -34,6 +34,8 @@ Hardware-related files are located in the `hardware` directory:
 - `ESP32CTRL_AD_PCB.pcbdoc`: Altium Designer PCB file exported from LCEDA
 - `ESP32CTRL_SVG.svg`: Schematic vector file
 
+> Note: Import the two JSON files, the schematic and PCB, into [LCEDA Standard Edition](https://lceda.cn/editor) to view and edit them. It is not recommended to use AD.
+
 ---
 
 ## Software Description
@@ -69,7 +71,64 @@ Connect the board to the computer via USB, press both buttons, release RESET fir
 
 The program uses Arduino's Serial class to output serial information via USB, which can be viewed using serial debugging software on the computer.
 
-In addition, ESP32C3's USB also supports JTAG debugging. After connecting it to the computer, you can use programs like [OpenOCD]([Linkscope](https://gitee.com/skythinker/link-scope)) to connect. During debugging, I combined it with [Linkscope](https://gitee.com/skythinker/link-scope) for online variable reading, writing, and curve drawing, which is quite convenient.
+In addition, ESP32C3's USB also supports JTAG debugging. After connecting it to the computer, you can use programs like [OpenOCD](https://openocd.org/) to connect. During debugging, I combined it with [Linkscope](https://gitee.com/skythinker/link-scope) for online variable reading, writing, and curve drawing, which is quite convenient.
+
+### Parameter Calibration
+
+Several parameters in `main.c` may need to be adjusted according to the actual system; otherwise, correct computation and control may not be achieved.
+
+#### Zero Offset and Rotation Direction Parameters
+
+In the `Motor_InitAll` function, the `Motor_Init` function is called to set parameters for each motor, including the zero offset `offsetAngle` and rotation direction `dir`.
+
+These two parameters are used in the `Motor_Update` function to convert the raw angle feedback from the encoder to the standard angle $\phi_i$ in the algorithm (motor `angle` member variable). The conversion formula is:
+
+$$
+\phi_i = (rawAngle_i - offsetAngle_i) \times dir_i
+$$
+
+The measurement methods for these two parameters are as follows:
+
+1. Set the `dir` parameter (values 1/-1) so that the motor `angle` member variable increases when the motor rotates in the positive direction of $\phi_i$.
+
+2. Set `offsetAngle=0` in the program (denoted as $offsetAngle_i^z$), rotate the motor to a certain angle, record the current calculated angle as $\phi_i^c$, and measure the current actual angle as $\phi_i^r$.
+
+3. Substitute $\phi_i^c$, $offsetAngle_i^z$, and $dir_i$ into the above formula to obtain the value of $rawAngle_i$.
+
+4. Substitute $\phi_i^r$, $rawAngle_i$, and $dir_i$ into the above formula to obtain the value of $offsetAngle_i$ and set it in the program.
+
+5. At this point, the `angle` member variable should be consistent with the actual $\phi_i$.
+
+> Note 1: The definition of $\phi_i$ can be found in the article referenced in the Matlab program documentation, where the front joint motor corresponds to $\phi_4$, and the rear joint motor corresponds to $\phi_1`.
+> 
+> Note 2: The descriptions above are for joint motors; wheel motors only need to set the `dir` parameter to align their `angle` variable direction with the driving wheel torque $T$ in the algorithm.
+
+#### Torque Coefficient
+
+> Note: If using the same motors as the author, this parameter can be left unchanged.
+
+Similar to the above two parameters, this parameter is also set in the `Motor_InitAll` function and is used for the conversion between voltage and torque. The formula is:
+
+$$
+voltage_i = \frac{torque_i}{torqueRatio_i}
+$$
+
+Where `torqueRatio` is the torque coefficient, and its measurement method is as follows:
+
+1. Apply different voltages to the motor and measure its torque (the author measured the stall torque), recorded as $(v_i, \tau_i)$.
+2. Fit $(v_i, \tau_i)$ to a linear function $\tau=k \times v$. The value of $k$ is the `torqueRatio` and can be calculated using software like Matlab, Excel, etc.
+
+#### Back EMF Function
+
+> Note: If using the same motors as the author, this parameter can be left unchanged.
+
+The back electromotive force calculation function for joint motors is `Motor_CalcRevVolt4010`, and for wheel motors, it is `Motor_CalcRevVolt2804`. It is used to calculate the back electromotive force based on the motor's real-time speed. The output voltage command will be compensated according to the calculation result to counteract the back electromotive force.
+
+When measuring the back electromotive force, apply different voltages to the motor, measure its no-load speed, and record it as $(v_i, \omega_i)$. Fit it to a third-degree polynomial function $v = f(\omega)$, which is the back electromotive force function.
+
+If the back electromotive force calibration is correct, when setting the motor torque to 0 (`torque` member is 0), manually rotating the motor should result in almost zero resistance (when compensating for back electromotive force, most of the mechanical resistance is also compensated).
+
+> Note: Comment out `Ctrl_Init();` in `setup()` or comment out all calls to `Motor_SetTorque` functions to disable the control system's output. This allows for manual insertion of code to debug the motor.
 
 ---
 

@@ -34,6 +34,8 @@
 - `ESP32CTRL_AD_PCB.pcbdoc`：立创EDA导出的 Altium Designer PCB文件
 - `ESP32CTRL_SVG.svg`：原理图矢量图文件
 
+> 注：将立创原理图和PCB两个json文件导入到[立创EDA标准版](https://lceda.cn/editor)中即可查看和编辑，不建议使用AD
+
 ---
 
 ## 软件说明
@@ -69,7 +71,64 @@ PlatformIO 工程位于`software`目录下，代码文件位于其中`src`目录
 
 程序中使用Arduinod的Serial类即可从USB输出串口信息，可以使用电脑上的串口调试软件进行查看
 
-此外，ESP32C3的USB还支持JTAG调试，连接到电脑后即可使用[OpenOCD]([Linkscope](https://gitee.com/skythinker/link-scope))等程序连接，笔者在调试过程中搭配[Linkscope](https://gitee.com/skythinker/link-scope)实现在线读写变量和曲线绘制，较为方便
+此外，ESP32C3的USB还支持JTAG调试，连接到电脑后即可使用[OpenOCD](https://openocd.org/)等程序连接，笔者在调试过程中搭配[Linkscope](https://gitee.com/skythinker/link-scope)实现在线读写变量和曲线绘制，较为方便
+
+### 参数标定
+
+在`main.c`中有几个参数可能需要根据实际系统进行调整，否则将无法进行正确的解算和控制
+
+#### 零点偏移、旋转方向参数
+
+`Motor_InitAll`函数中分别调用`Motor_Init`进行每个电机的参数设定，包括了零点偏移`offsetAngle`和旋转方向`dir`
+
+这两个参数用于在`Motor_Update`函数中将编码器反馈的原始角度转换为算法中的标准角度$\phi_i$（电机`angle`成员变量），转换公式为：
+
+$$
+\phi_i = (rawAngle_i - offsetAngle_i) * dir_i
+$$
+
+这两个参数的测量方法如下：
+
+1. 设置`dir`参数（取值1/-1）使得电机`angle`成员变量在电机向$\phi_i$正方向旋转时增加
+
+2. 程序中设置`offsetAngle=0`（记为$offsetAngle_i^z$），将电机旋转到某个角度，记录当前的计算角度为$\phi_i^c$，测量当前的实际角度为$\phi_i^r$
+
+3. 将$\phi_i^c$、$offsetAngle_i^z$、$dir_i$代入上方公式，求得$rawAngle_i$的值
+
+4. 将$\phi_i^r$、$rawAngle_i$、$dir_i$代入上方公式，求得$offsetAngle_i$的值，设置到程序中
+
+5. 此时`angle`成员变量应该与实际$\phi_i$一致
+
+> 注1：$\phi_i$的定义可以在Matlab程序说明文档中引用的文章中找到，靠前的关节电机对应$\phi_4$，靠后的关节电机对应$\phi_1$
+> 
+> 注2：上方描述的均为关节电机，车轮电机仅需设置`dir`参数，使其`angle`变量正方向与算法中驱动轮力矩$T$一致即可
+
+#### 扭矩系数
+
+> 注：若使用笔者相同电机，可以不修改该参数
+
+与上述两个参数相同，该参数也在`Motor_InitAll`函数中进行设置，用于进行电压和扭矩的换算，公式为：
+
+$$
+voltage_i = \frac{torque_i}{torqueRatio_i}
+$$
+
+其中`torqueRatio`为扭矩系数，其测量方法如下：
+
+1. 给电机不同的电压，测量其扭矩（笔者测的是堵转扭矩），记录为$(v_i, \tau_i)$
+2. 将$(v_i, \tau_i)$拟合为线性函数$\tau=k*v$，$k$即为`torqueRatio`的值，可以用Matlab、Excel等软件辅助计算
+
+#### 反电动势函数
+
+> 注：若使用笔者相同电机，可以不修改该参数
+
+关节电机反电动势计算函数为`Motor_CalcRevVolt4010`，车轮电机为`Motor_CalcRevVolt2804`，用于根据电机的实时转速计算反电动势，输出电压指令时会根据计算结果进行补偿，以抵消反电动势
+
+测量反电动势时，给电机不同的电压，测量其空载转速，记录为$(v_i, \omega_i)$，拟合为三次幂函数$v = f(\omega)$，即为反电动势函数
+
+若反电动势标定正确，在设置电机扭矩为0时（`torque`成员为0）手动旋转电机，应该感受到阻力几乎为0（抵消反电动势时顺便抵消了大部分机械阻力）
+
+> 注：注释掉`setup()`中的`Ctrl_Init();`，或注释所有`Motor_SetTorque`函数的调用，即可禁用控制系统的输出，此时可以自行插入代码调试电机
 
 ---
 

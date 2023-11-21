@@ -41,7 +41,7 @@
 - `STM32FOC_AD_PCB.pcbdoc`：立创导出的 Altium Designer PCB文件
 - `STM32FOC_SVG.svg`：原理图矢量图文件
 
-> 注：Altium Designer 文件未经过检查，可能存在错误
+> 注：将立创原理图和PCB两个json文件导入到[立创EDA标准版](https://lceda.cn/editor)中即可查看和编辑，不建议使用AD
 
 ---
 
@@ -127,6 +127,8 @@ CAN通信使用标准帧，波特率为1Mbps
 | int16_t | int16_t | int16_t | int16_t |
 
 也就是说，如果向总线发送StdID=0x100的数据帧，那么ID为1-4的驱动板会同时接收到指令；如果发送StdID=0x200的数据帧，则ID为5-8的驱动板会收到指令
+
+> 注意：上述输出电压均为有效值而非峰值，例如供电电压12V时，输出电压允许范围为[0, 6.93V] (12 / √3 = 6.93)
 
 ---
 
