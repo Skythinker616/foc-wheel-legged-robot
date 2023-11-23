@@ -99,7 +99,7 @@ The measurement methods for these two parameters are as follows:
 
 5. At this point, the `angle` member variable should be consistent with the actual $\phi_i$.
 
-> Note 1: The definition of $\phi_i$ can be found in the article referenced in the Matlab program documentation, where the front joint motor corresponds to $\phi_4$, and the rear joint motor corresponds to $\phi_1`.
+> Note 1: The definition of $\phi_i$ can be found in the article referenced in the Matlab program documentation, where the front joint motor corresponds to $\phi_4$, and the rear joint motor corresponds to $\phi_1`$.
 > 
 > Note 2: The descriptions above are for joint motors; wheel motors only need to set the `dir` parameter to align their `angle` variable direction with the driving wheel torque $T$ in the algorithm.
 
