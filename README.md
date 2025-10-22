@@ -63,6 +63,7 @@
 
 - [`solidworks`](solidworks)：机械结构设计，包含所有零件和总装配体模型文件
 - [`matlab`](matlab)：算法仿真，包含模型建立、算法设计和仿真文件等
+- [`python`](python)：上述模型和仿真的python版本
 - [`stm32-foc`](stm32-foc)：无刷电机驱动板，包含硬件设计文件和STM32代码工程
 - [`esp32-controller`](esp32-controller)：运动控制模块，包含硬件设计文件和ESP32代码工程
 - [`linux-fpv`](linux-fpv)：Linux 图传模块，包含相关Shell脚本和Python脚本
