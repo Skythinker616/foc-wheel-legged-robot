@@ -1,0 +1,14 @@
+# Core numerical computing
+numpy>=1.22,<2.0
+
+# Visualization and animation
+matplotlib>=3.5
+
+# Symbolic math for system linearization
+sympy>=1.10
+
+# Scientific computing (includes discrete LQR solver)
+scipy>=1.8
+
+# Optional: for better performance
+# numba>=0.56  # JIT compilation for numerical loops
