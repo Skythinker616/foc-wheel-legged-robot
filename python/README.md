@@ -1,5 +1,7 @@
 # Python Simulation & Visualization
 
+<p align="center"><img src="robot_sim/demos/sim.png" alt="Simulation preview" style="max-width:80%; height:auto;"></p>
+
 This folder provides a Python port of the MATLAB models in `matlab/` for the foc-wheel-legged-robot.
 
 Features:

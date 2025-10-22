@@ -113,15 +113,20 @@ def compute_dlqr(Ad: np.ndarray, Bd: np.ndarray, Q: np.ndarray, R: np.ndarray) -
 
 
 def simulate_closed_loop(Ad: np.ndarray, Bd: np.ndarray, K: np.ndarray,
-                         x0: np.ndarray, steps: int) -> np.ndarray:
+                         x0: np.ndarray, steps: int) -> Tuple[np.ndarray, np.ndarray]:
     """Simulate x_{k+1} = Ad x_k + Bd u_k, u = -K x_k.
-    Returns array of shape (steps+1, n_state).
+    Returns (x_hist, u_hist) arrays of shape (steps+1, n_state) and (steps+1, n_input).
     """
     x_hist = np.zeros((steps+1, Ad.shape[0]))
+    u_hist = np.zeros((steps+1, Bd.shape[1]))
     x = np.array(x0, dtype=float).reshape(-1)
     x_hist[0] = x
+    u_hist[0] = -K @ x
+    
     for k in range(steps):
         u = -K @ x
+        u_hist[k+1] = u
         x = Ad @ x + Bd @ u
         x_hist[k+1] = x
-    return x_hist
+    
+    return x_hist, u_hist

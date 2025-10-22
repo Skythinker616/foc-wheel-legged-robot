@@ -41,11 +41,11 @@ if __name__ == "__main__":
     ])
 
     steps = int(SIM_TIME/DT)
-    x_hist = simulate_closed_loop(Ad, Bd, K, x0, steps)
+    x_hist, u_hist = simulate_closed_loop(Ad, Bd, K, x0, steps)
     
     print(f"\nSimulation complete: {steps+1} steps")
     print(f"Final state: theta={np.degrees(x_hist[-1,0]):.2f} deg, x={x_hist[-1,2]:.3f} m")
+    print(f"Control range: T=[{u_hist[:,0].min():.2f}, {u_hist[:,0].max():.2f}] Nm, Tp=[{u_hist[:,1].min():.2f}, {u_hist[:,1].max():.2f}] Nm")
 
-    # Animate with robust defaults: follow the cart, auto aspect (prevents y squeeze),
-    # and a reasonable horizontal window.
-    animate_balance(x_hist, DT, follow=True, window=0.8, aspect_equal=False)
+    # Animate with state and control plots
+    animate_balance(x_hist, DT, u_hist=u_hist, follow=True, window=0.8)
